@@ -36,7 +36,6 @@
             android:ems="10"
             android:gravity="right"
             android:inputType="textPersonName"
-            android:text="1 + 1"
             android:textColor="#FFFFFF"
             android:textSize="48sp" />
 
