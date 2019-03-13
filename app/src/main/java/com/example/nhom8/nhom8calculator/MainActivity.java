@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
 
+import java.util.Queue;
+import java.lang.String;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtResult;
@@ -169,7 +172,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textFieldInputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
                 break;
             case R.id.btnResult:
-                // TO do
+                String bieuthuc= txtExpression.getText().toString();
+                String[] E=InfixToPostfix.tachChuoi(bieuthuc);
+
+                Queue<String> postFix = InfixToPostfix.postfix(E);
+
+                String result = Calculator.valueMath(postFix);
+                System.out.println(result);
+                txtResult.setText(result);
                 break;
         }
     }
