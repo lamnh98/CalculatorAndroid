@@ -331,6 +331,149 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/btnMoNgoac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="("
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnDongNgoac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text=")"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnPhanSo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="1/x"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnMu2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="^2"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnMu3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="^3"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnMuY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="^y"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnGiaiThua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="x!"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnCanBac"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="√"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnCanBacY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="x√y"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnE"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="e"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnLN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="ln"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnLog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="log"
+            android:textColor="#7F7F7F" />
+
+        <Button
+            android:id="@+id/btnSin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="sin"
+            android:textColor="#7F7F7F" />
+
+
+        <Button
+            android:id="@+id/btnCos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="cos"
+            android:textColor="#7F7F7F" />
+
+
+        <Button
+            android:id="@+id/btnTan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_normal_background"
+            android:text="tan"
+            android:textColor="#7F7F7F" />
+
+    </LinearLayout>
     <android.support.constraint.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"

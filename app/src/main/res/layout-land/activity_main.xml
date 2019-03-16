@@ -462,7 +462,8 @@
                 android:layout_weight="6"
                 android:background="@drawable/btn_color_background"
                 android:text="="
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                />
 
         </LinearLayout>
 
