@@ -20,7 +20,8 @@ public class Calculator {
 			if (!InfixToPostfix.isOperator(c)) // Khong phai toan tu thi bo vao stack
 				stack.push(temp);
 			else {
-				if (c != 's' && c != 'c' && c != 't') {
+				if (c != 's' && c != 'c' && c != 't'
+						&& c != '!' && c != '√') {
 					double num = 0f;
 					double num1 = Float.parseFloat(stack.pop());
 					double num2 = Float.parseFloat(stack.pop());
@@ -40,12 +41,35 @@ public class Calculator {
 					case '^':
 						num = Math.pow(num2, num1);
 						break;
+					case 'Ö':
+						num = Math.pow(num2,(float) 1/num1);
+						break;
+
 					default:
 						break;
 					}
 
 					stack.push(Double.toString(num));
-				} else {
+				} else
+					if (c == '!' || c == '√')
+					{
+						double ketQua = 0f;
+						double number  = Float.parseFloat(stack.pop());
+						switch (c) {
+
+							case '!':
+								ketQua = GiaiThua(number);
+								break;
+							case '√':
+								ketQua =  StrictMath.sqrt(number);
+								break;
+							default:
+								break;
+						}
+						stack.push(Double.toString(ketQua));
+					}
+					else
+					{
 					double num = 0f;
 					double num1 = Float.parseFloat(stack.pop());
 					double rad = Math.toRadians(num1);
@@ -69,5 +93,14 @@ public class Calculator {
 		}
 		// Tra ve ket qua
 		return stack.pop();
+	}
+
+	public static double GiaiThua(double a) {
+		if(a>0)
+		{
+			return a * GiaiThua(a - 1);
+		}
+		else
+			return 1;
 	}
 }

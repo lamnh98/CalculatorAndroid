@@ -244,10 +244,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.append("!");
                 break;
             case R.id.btnCanBac:
-                txtExpression.append("");
+                txtExpression.append("√");
                 break;
             case R.id.btnCanBacY:
-                txtExpression.append("");
+                txtExpression.append("Ö");
                 break;
             case R.id.btnE:
                 txtExpression.append("e");

@@ -12,7 +12,7 @@ public class InfixToPostfix {
 	}
 
 	public static boolean isOperator(char c) { // kiem tra xem co phai toan tu
-		char operator[] = { '+', '-', '*', '/', ')', '(', '^', 's', 'c', 't', 'l' };
+		char operator[] = { '+', '-', '*', '/', ')', '(', '^', 's', 'c', 't', 'l', '!', '√', 'Ö'};
 		Arrays.sort(operator);
 		if (Arrays.binarySearch(operator, c) > -1)
 			return true;
@@ -63,8 +63,17 @@ public class InfixToPostfix {
 					tam = bieuthuc.substring(i, i + 3); // lay 3 ki tu ke tiep
 					s1 = s1 + " " + tam;
 					i += 2;
-				} else
-					s1 = s1 + " " + c;
+				}
+				else
+					if(c == '!' || c == '√') // kiem tra giai thua, can
+					{
+
+						String giaithua = null;
+						giaithua = bieuthuc.substring(i,i+1);
+						s1 = s1 + " " + giaithua;
+					}
+						else
+						s1 = s1 + " " + c;
 			}
 			// Xoa dau " " ở cuối chuỗi
 			s1 = s1.trim();
@@ -82,7 +91,8 @@ public class InfixToPostfix {
 		for (int i = 0; i < elementMath.length; i++) { // duyet cac phan tu
 			char c = elementMath[i].charAt(0); // c la ky tu dau tien cua moi phan tu
 
-			if (!isOperator(c) && c != 's' && c != 'c' && c != 't' && c != 'l') // neu c la number
+			if (!isOperator(c) && c != 's' && c != 'c' && c != 't' && c != 'l'
+					&& c != '!' && c != '√') // neu c la number
 				// s1 = s1 + " " + elementMath[i]; // xuat elem vao s1
 				queue.add(elementMath[i]);
 			else { // c la toan tu
