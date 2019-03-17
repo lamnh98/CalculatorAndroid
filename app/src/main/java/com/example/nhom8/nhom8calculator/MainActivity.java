@@ -1,5 +1,7 @@
 package com.example.nhom8.nhom8calculator;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -8,6 +10,9 @@ import android.view.inputmethod.BaseInputConnection;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
+
+import java.util.Queue;
+import java.lang.String;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -32,6 +37,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnMulti;
     private Button btnDivide;
 
+    private Button btnMoNgoac;
+    private Button btnDongNgoac;
+    private Button btnPhanSo;
+    private Button btnMu2;
+    private Button btnMu3;
+    private Button btnMuY;
+    private Button btnGiaiThua;
+    private Button btnCanBac;
+    private Button btnCanBacY;
+    private Button btnE;
+    private Button btnLN;
+    private Button btnLog;
+    private Button btnSin;
+    private Button btnCos;
+    private Button btnTan;
+
     private Button btnClear;
     private Button btnBackspace;
     private Button btnResult;
@@ -44,11 +65,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         initWidget();
         setEventClickViews();
-
     }
 
+    // Set id for variables
     public void initWidget() {
-
         txtResult = (TextView) findViewById(R.id.txtResult);
         txtMode = (TextView) findViewById(R.id.txtMode);
         txtExpression = (EditText) findViewById(R.id.txtExpression);
@@ -70,11 +90,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnMulti = (Button) findViewById(R.id.btnMulti);
         btnDivide = (Button) findViewById(R.id.btnDivide);
 
+        btnMoNgoac = (Button) findViewById(R.id.btnMoNgoac);
+        btnDongNgoac = (Button) findViewById(R.id.btnDongNgoac);
+        btnPhanSo = (Button) findViewById(R.id.btnPhanSo);
+        btnMu2 = (Button) findViewById(R.id.btnMu2);
+        btnMu3 = (Button) findViewById(R.id.btnMu3);
+        btnMuY = (Button) findViewById(R.id.btnMuY);
+        btnGiaiThua = (Button) findViewById(R.id.btnGiaiThua);
+        btnCanBac = (Button) findViewById(R.id.btnCanBac);
+        btnCanBacY = (Button) findViewById(R.id.btnCanBacY);
+        btnE = (Button) findViewById(R.id.btnE);
+        btnLN = (Button) findViewById(R.id.btnLN);
+        btnLog = (Button) findViewById(R.id.btnLog);
+        btnSin = (Button) findViewById(R.id.btnSin);
+        btnCos = (Button) findViewById(R.id.btnCos);
+        btnTan = (Button) findViewById(R.id.btnTan);
+
         btnClear = (Button) findViewById(R.id.btnClear);
         btnBackspace = (Button) findViewById(R.id.btnBackspace);
         btnResult = (Button) findViewById(R.id.btnResult);
     }
 
+    // Listen event
     public void setEventClickViews() {
         btn0.setOnClickListener(this);
         btn1.setOnClickListener(this);
@@ -93,11 +130,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnMulti.setOnClickListener(this);
         btnDivide.setOnClickListener(this);
 
+        btnMoNgoac.setOnClickListener(this);
+        btnDongNgoac.setOnClickListener(this);
+        btnPhanSo.setOnClickListener(this);
+        btnMu2.setOnClickListener(this);
+        btnMu3.setOnClickListener(this);
+        btnMuY.setOnClickListener(this);
+        btnGiaiThua.setOnClickListener(this);
+        btnCanBac.setOnClickListener(this);
+        btnCanBacY.setOnClickListener(this);
+        btnE.setOnClickListener(this);
+        btnLN.setOnClickListener(this);
+        btnLog.setOnClickListener(this);
+        btnSin.setOnClickListener(this);
+        btnCos.setOnClickListener(this);
+        btnTan.setOnClickListener(this);
+
         btnClear.setOnClickListener(this);
         btnBackspace.setOnClickListener(this);
         btnResult.setOnClickListener(this);
     }
 
+    // Add symbols when click button
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn0:
@@ -168,8 +222,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 BaseInputConnection  textFieldInputConnection = new BaseInputConnection(txtExpression, true);
                 textFieldInputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
                 break;
+            case R.id.btnMoNgoac:
+                txtExpression.append("(");
+                break;
+            case R.id.btnDongNgoac:
+                txtExpression.append(")");
+                break;
+            case R.id.btnPhanSo:
+                txtExpression.append("1/");
+                break;
+            case R.id.btnMu2:
+                txtExpression.append("^2");
+                break;
+            case R.id.btnMu3:
+                txtExpression.append("^3");
+                break;
+            case R.id.btnMuY:
+                txtExpression.append("^");
+                break;
+            case R.id.btnGiaiThua:
+                txtExpression.append("!");
+                break;
+            case R.id.btnCanBac:
+                txtExpression.append("√");
+                break;
+            case R.id.btnCanBacY:
+                txtExpression.append("Ö");
+                break;
+            case R.id.btnE:
+                txtExpression.append("e");
+                break;
+            case R.id.btnLN:
+                txtExpression.append("ln(");
+                break;
+            case R.id.btnLog:
+                txtExpression.append("log(");
+                break;
+            case R.id.btnSin:
+                txtExpression.append("sin(");
+                break;
+            case R.id.btnCos:
+                txtExpression.append("cos(");
+                break;
+            case R.id.btnTan:
+                txtExpression.append("tan(");
+                break;
             case R.id.btnResult:
-                // TO do
+                String bieuthuc= txtExpression.getText().toString();
+                String[] E=InfixToPostfix.tachChuoi(bieuthuc);
+
+                Queue<String> postFix = InfixToPostfix.postfix(E);
+
+                String result = Calculator.valueMath(postFix);
+                System.out.println(result);
+                txtResult.setText(result);
                 break;
         }
     }
