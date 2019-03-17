@@ -67,6 +67,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setEventClickViews();
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
     // Set id for variables
     public void initWidget() {
         txtResult = (TextView) findViewById(R.id.txtResult);
