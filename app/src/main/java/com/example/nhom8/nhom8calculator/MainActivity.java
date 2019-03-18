@@ -6,6 +6,7 @@ import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.BaseInputConnection;
 import android.widget.EditText;
@@ -73,6 +74,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         initWidget();
+        txtExpression.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.onTouchEvent(motionEvent);
+                InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                if (imm != null) {
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+                return true;
+            }
+        });
+
         setEventClickViews();
     }
 
@@ -88,9 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtExpression = (EditText) findViewById(R.id.txtExpression);
         txtExpression.setTextIsSelectable(true);
 
-//        InputMethodManager input = (InputMethodManager)getSystemService(
-//                Context.INPUT_METHOD_SERVICE);
-//        input.hideSoftInputFromWindow(txtExpression.getWindowToken(), 0);
 
         btn0 = (Button) findViewById(R.id.btn0);
         btn1 = (Button) findViewById(R.id.btn1);
@@ -217,25 +227,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.append(".");
                 break;
             case R.id.btnMplus:
-                if(txtResult.length() == 0){
+                if (txtResult.length() == 0) {
                     txtExpression.append("0+");
-                }
-                else{
+                } else {
                     txtExpression.append(txtResult.getText().toString() + "+");
                 }
                 break;
             case R.id.btnMminus:
-                if(txtResult.length() == 0){
+                if (txtResult.length() == 0) {
                     txtExpression.append("0-");
-                }
-                else{
+                } else {
                     txtExpression.append(txtResult.getText().toString() + "-");
                 }
                 break;
             case R.id.btnMC:
-                if(txtResult.length() == 0){
+                if (txtResult.length() == 0) {
                     stringMC = "0";
-                }else{
+                } else {
                     stringMC = txtResult.getText().toString();
                 }
                 break;
@@ -265,16 +273,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnDivide:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0/"));
+                    txtExpression.append(("0÷"));
                 } else {
-                    txtExpression.append("/");
+                    txtExpression.append("÷");
                 }
                 break;
             case R.id.btnClear:
                 txtExpression.setText("");
                 break;
             case R.id.btnBackspace:
-                BaseInputConnection  textFieldInputConnection = new BaseInputConnection(txtExpression, true);
+                BaseInputConnection textFieldInputConnection = new BaseInputConnection(txtExpression, true);
                 textFieldInputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
                 break;
             case R.id.btnMoNgoac:
@@ -287,19 +295,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.append("1/");
                 break;
             case R.id.btnMu2:
-                txtExpression.append("^2");
+                txtExpression.append("^(2)");
                 break;
             case R.id.btnMu3:
-                txtExpression.append("^3");
+                txtExpression.append("^(3)");
                 break;
             case R.id.btnMuY:
-                txtExpression.append("^");
+                txtExpression.append("^(");
                 break;
             case R.id.btnGiaiThua:
                 txtExpression.append("!");
                 break;
             case R.id.btnCanBac:
-                txtExpression.append("√");
+                txtExpression.append("√(");
                 break;
             case R.id.btnCanBacY:
                 txtExpression.append("Ö");
@@ -323,8 +331,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.append("tan(");
                 break;
             case R.id.btnResult:
-                String bieuthuc= txtExpression.getText().toString();
-                String[] E=InfixToPostfix.tachChuoi(bieuthuc);
+                String bieuthuc = txtExpression.getText().toString();
+                String[] E = InfixToPostfix.tachChuoi(bieuthuc);
 
                 Queue<String> postFix = InfixToPostfix.postfix(E);
 
@@ -337,7 +345,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public String deleteANumber(String number) {
         int lenght = number.length();
-        String temporaryNumber = number.substring(0, lenght-1);
+        String temporaryNumber = number.substring(0, lenght - 1);
         return temporaryNumber;
     }
 }
