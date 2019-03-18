@@ -1,4 +1,4 @@
-package com.example.nhom8.nhom8calculator;
+﻿package com.example.nhom8.nhom8calculator;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -111,6 +111,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnResult = (Button) findViewById(R.id.btnResult);
     }
 
+//
+//t7yffuiiyu
     // Listen event
     public void setEventClickViews() {
         btn0.setOnClickListener(this);
