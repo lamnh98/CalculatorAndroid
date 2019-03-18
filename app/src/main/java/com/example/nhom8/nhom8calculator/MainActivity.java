@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn9;
     private Button btnComma;
 
+    private Button btnMplus;
+    private Button btnMminus;
+    private Button btnMC;
+    private String stringMC;
+    private Button btnMR;
+
     private Button btnPlus;
     private Button btnMinus;
     private Button btnMulti;
@@ -98,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn9 = (Button) findViewById(R.id.btn9);
         btnComma = (Button) findViewById(R.id.btnComma);
 
+        btnMplus = (Button) findViewById(R.id.btnMplus);
+        btnMminus = (Button) findViewById(R.id.btnMminus);
+        btnMC = (Button) findViewById(R.id.btnMC);
+        btnMR = (Button) findViewById(R.id.btnMR);
+
         btnPlus = (Button) findViewById(R.id.btnPlus);
         btnMinus = (Button) findViewById(R.id.btnMinus);
         btnMulti = (Button) findViewById(R.id.btnMulti);
@@ -137,6 +148,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn8.setOnClickListener(this);
         btn9.setOnClickListener(this);
         btnComma.setOnClickListener(this);
+
+        btnMplus.setOnClickListener(this);
+        btnMminus.setOnClickListener(this);
+        btnMC.setOnClickListener(this);
+        btnMR.setOnClickListener(this);
 
         btnPlus.setOnClickListener(this);
         btnMinus.setOnClickListener(this);
@@ -198,7 +214,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.append("9");
                 break;
             case R.id.btnComma:
-                txtExpression.append(",");
+                txtExpression.append(".");
+                break;
+            case R.id.btnMplus:
+                if(txtResult.length() == 0){
+                    txtExpression.append("0+");
+                }
+                else{
+                    txtExpression.append(txtResult.getText().toString() + "+");
+                }
+                break;
+            case R.id.btnMminus:
+                if(txtResult.length() == 0){
+                    txtExpression.append("0-");
+                }
+                else{
+                    txtExpression.append(txtResult.getText().toString() + "-");
+                }
+                break;
+            case R.id.btnMC:
+                if(txtResult.length() == 0){
+                    stringMC = "0";
+                }else{
+                    stringMC = txtResult.getText().toString();
+                }
+                break;
+            case R.id.btnMR:
+                txtExpression.append(stringMC);
                 break;
             case R.id.btnPlus:
                 if (txtExpression.length() == 0) {

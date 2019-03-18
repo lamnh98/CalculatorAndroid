@@ -192,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/btn_normal_background"
-                android:text="÷"
+                android:text="/"
                 android:textColor="#E04556" />
 
             <Button
@@ -440,7 +440,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="@drawable/btn_normal_background"
-                        android:text=","
+                        android:text="."
                         android:textColor="#7F7F7F" />
 
                     <Button
