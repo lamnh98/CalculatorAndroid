@@ -208,16 +208,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnMulti:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0x"));
+                    txtExpression.append(("0*"));
                 } else {
-                    txtExpression.append("x");
+                    txtExpression.append("*");
                 }
                 break;
             case R.id.btnDivide:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0÷"));
+                    txtExpression.append(("0/"));
                 } else {
-                    txtExpression.append("÷");
+                    txtExpression.append("/");
                 }
                 break;
             case R.id.btnClear:
