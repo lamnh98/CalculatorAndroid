@@ -1,6 +1,7 @@
 package com.example.nhom8.nhom8calculator;
 
-import android.content.Intent;
+
+import android.content.Context;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.view.inputmethod.BaseInputConnection;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
+import android.view.inputmethod.InputMethodManager;
+
 
 import java.util.Queue;
 import java.lang.String;
@@ -77,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtResult = (TextView) findViewById(R.id.txtResult);
         txtMode = (TextView) findViewById(R.id.txtMode);
         txtExpression = (EditText) findViewById(R.id.txtExpression);
+        txtExpression.setTextIsSelectable(true);
+
+//        InputMethodManager input = (InputMethodManager)getSystemService(
+//                Context.INPUT_METHOD_SERVICE);
+//        input.hideSoftInputFromWindow(txtExpression.getWindowToken(), 0);
 
         btn0 = (Button) findViewById(R.id.btn0);
         btn1 = (Button) findViewById(R.id.btn1);
