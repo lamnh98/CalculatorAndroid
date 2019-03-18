@@ -1,4 +1,4 @@
-﻿package com.example.nhom8.nhom8calculator;
+package com.example.nhom8.nhom8calculator;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -31,6 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btn8;
     private Button btn9;
     private Button btnComma;
+
+    private Button btnMplus;
+    private Button btnMminus;
+    private Button btnMC;
+    private String stringMC;
+    private Button btnMR;
 
     private Button btnPlus;
     private Button btnMinus;
@@ -67,6 +73,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setEventClickViews();
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
     // Set id for variables
     public void initWidget() {
         txtResult = (TextView) findViewById(R.id.txtResult);
@@ -84,6 +95,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn8 = (Button) findViewById(R.id.btn8);
         btn9 = (Button) findViewById(R.id.btn9);
         btnComma = (Button) findViewById(R.id.btnComma);
+
+        btnMplus = (Button) findViewById(R.id.btnMplus);
+        btnMminus = (Button) findViewById(R.id.btnMminus);
+        btnMC = (Button) findViewById(R.id.btnMC);
+        btnMR = (Button) findViewById(R.id.btnMR);
 
         btnPlus = (Button) findViewById(R.id.btnPlus);
         btnMinus = (Button) findViewById(R.id.btnMinus);
@@ -111,8 +127,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnResult = (Button) findViewById(R.id.btnResult);
     }
 
-//
-//t7yffuiiyu
     // Listen event
     public void setEventClickViews() {
         btn0.setOnClickListener(this);
@@ -126,6 +140,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn8.setOnClickListener(this);
         btn9.setOnClickListener(this);
         btnComma.setOnClickListener(this);
+
+        btnMplus.setOnClickListener(this);
+        btnMminus.setOnClickListener(this);
+        btnMC.setOnClickListener(this);
+        btnMR.setOnClickListener(this);
 
         btnPlus.setOnClickListener(this);
         btnMinus.setOnClickListener(this);
@@ -187,7 +206,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.append("9");
                 break;
             case R.id.btnComma:
-                txtExpression.append(",");
+                txtExpression.append(".");
+                break;
+            case R.id.btnMplus:
+                if(txtResult.length() == 0){
+                    txtExpression.append("0+");
+                }
+                else{
+                    txtExpression.append(txtResult.getText().toString() + "+");
+                }
+                break;
+            case R.id.btnMminus:
+                if(txtResult.length() == 0){
+                    txtExpression.append("0-");
+                }
+                else{
+                    txtExpression.append(txtResult.getText().toString() + "-");
+                }
+                break;
+            case R.id.btnMC:
+                if(txtResult.length() == 0){
+                    stringMC = "0";
+                }else{
+                    stringMC = txtResult.getText().toString();
+                }
+                break;
+            case R.id.btnMR:
+                txtExpression.append(stringMC);
                 break;
             case R.id.btnPlus:
                 if (txtExpression.length() == 0) {
@@ -205,16 +250,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnMulti:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0x"));
+                    txtExpression.append(("0*"));
                 } else {
-                    txtExpression.append("x");
+                    txtExpression.append("*");
                 }
                 break;
             case R.id.btnDivide:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0÷"));
+                    txtExpression.append(("0/"));
                 } else {
-                    txtExpression.append("÷");
+                    txtExpression.append("/");
                 }
                 break;
             case R.id.btnClear:
