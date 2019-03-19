@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         txtResult = (TextView) findViewById(R.id.txtResult);
         txtMode = (TextView) findViewById(R.id.txtMode);
         txtExpression = (EditText) findViewById(R.id.txtExpression);
-        txtExpression.setTextIsSelectable(true);
+//        txtExpression.setTextIsSelectable(true);
 
 //        InputMethodManager input = (InputMethodManager)getSystemService(
 //                Context.INPUT_METHOD_SERVICE);
