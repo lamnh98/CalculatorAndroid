@@ -251,45 +251,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.append(stringMC);
                 break;
             case R.id.btnPlus:
-                if (txtExpression.length() == 0) {
-                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "+");
-                }
-                if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
+
+                if (txtExpression.length() == 0)
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "0+");
-                }
-                else {
+                else if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(')
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0+");
+                else
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "+");
-                }
+
                 break;
             case R.id.btnMinus:
-                if (txtExpression.length() == 0) {
+
+                if (txtExpression.length() == 0)
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "0-");
-                }
-                if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
+                else if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(')
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "0-");
-                } else {
+                else
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "-");
-                }
+
                 break;
             case R.id.btnMulti:
-                if (txtExpression.length() == 0) {
-                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0xx");
-                }
-                if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
+
+                if (txtExpression.length() == 0)
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "0x");
-                } else {
+                else if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(')
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0x");
+                else
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "x");
-                }
+
                 break;
             case R.id.btnDivide:
-                if (txtExpression.length() == 0) {
+
+                if (txtExpression.length() == 0)
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "0÷");
-                }
-                if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
+                else if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(')
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "0÷");
-                } else {
+                else
                     txtExpression.getText().insert(txtExpression.getSelectionStart(), "÷");
-                }
+
                 break;
             case R.id.btnClear:
                 txtExpression.setText("");
@@ -326,7 +325,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.getText().insert(txtExpression.getSelectionStart(), "√(");
                 break;
             case R.id.btnE:
-                txtExpression.getText().insert(txtExpression.getSelectionStart(), "e");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "ε");
                 break;
             case R.id.btnLN:
                 txtExpression.getText().insert(txtExpression.getSelectionStart(), "ln(");
@@ -345,14 +344,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnResult:
                 String bieuthuc = txtExpression.getText().toString();
-                bieuthuc = bieuthuc.replace("x","*");
+                bieuthuc = bieuthuc.replace("x", "*");
                 String[] E = InfixToPostfix.tachChuoi(bieuthuc);
 
                 Queue<String> postFix = InfixToPostfix.postfix(E);
+                try {
+                    String result = Calculator.valueMath(postFix);
+                    System.out.println(result);
+                    txtResult.setText(result);
+                } catch (ArithmeticException error) {
+                    txtResult.setText(error.getMessage());
+                } catch (Exception error) {
+                    txtResult.setText("Error");
+                }
 
-                String result = Calculator.valueMath(postFix);
-                System.out.println(result);
-                txtResult.setText(result);
+
                 break;
         }
     }
