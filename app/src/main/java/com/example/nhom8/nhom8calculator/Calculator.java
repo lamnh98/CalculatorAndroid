@@ -29,7 +29,7 @@ public class Calculator {
                     double num = 0f;
                     num = Math.exp(1);
                     stack.push(Double.toString(num));
-                    break;
+
                 } else
                     if (c == '+' || c == '-' || c == '*' || c == '÷' || c == '^') { // Kiểm toán tử 2 số hạng
                         double num = 0f;
