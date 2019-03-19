@@ -194,37 +194,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn0:
-                txtExpression.append("0");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "0");
                 break;
             case R.id.btn1:
-                txtExpression.append("1");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "1");
                 break;
             case R.id.btn2:
-                txtExpression.append("2");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "2");
                 break;
             case R.id.btn3:
-                txtExpression.append("3");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "3");
                 break;
             case R.id.btn4:
-                txtExpression.append("4");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "4");
                 break;
             case R.id.btn5:
-                txtExpression.append("5");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "5");
                 break;
             case R.id.btn6:
-                txtExpression.append("6");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "6");
                 break;
             case R.id.btn7:
-                txtExpression.append("7");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "7");
                 break;
             case R.id.btn8:
-                txtExpression.append("8");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "8");
                 break;
             case R.id.btn9:
-                txtExpression.append("9");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "9");
                 break;
             case R.id.btnComma:
-                txtExpression.append(".");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), ".");
                 break;
             case R.id.btnMplus:
                 if (txtResult.length() == 0) {
@@ -252,43 +252,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnPlus:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0+"));
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "+");
                 }
                 if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
-                    txtExpression.append(("0+"));
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0+");
                 }
                 else {
-                    txtExpression.append("+");
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "+");
                 }
                 break;
             case R.id.btnMinus:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0-"));
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0-");
                 }
                 if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
-                    txtExpression.append(("0-"));
-                }else {
-                    txtExpression.append("-");
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0-");
+                } else {
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "-");
                 }
                 break;
             case R.id.btnMulti:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0x"));
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0xx");
                 }
                 if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
-                    txtExpression.append(("0x"));
-                }else {
-                    txtExpression.append("x");
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0x");
+                } else {
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "x");
                 }
                 break;
             case R.id.btnDivide:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0÷"));
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0÷");
                 }
                 if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
-                    txtExpression.append(("0÷"));
-                }else {
-                    txtExpression.append("÷");
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "0÷");
+                } else {
+                    txtExpression.getText().insert(txtExpression.getSelectionStart(), "÷");
                 }
                 break;
             case R.id.btnClear:
@@ -299,49 +299,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 textFieldInputConnection.sendKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL));
                 break;
             case R.id.btnMoNgoac:
-                txtExpression.append("(");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "(");
                 break;
             case R.id.btnDongNgoac:
-                txtExpression.append(")");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), ")");
                 break;
             case R.id.btnPhanSo:
-                txtExpression.append("1/");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "1÷");
                 break;
             case R.id.btnMu2:
-                txtExpression.append("^(2)");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "^(2)");
                 break;
             case R.id.btnMu3:
-                txtExpression.append("^(3)");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "^(3)");
                 break;
             case R.id.btnMuY:
-                txtExpression.append("^(");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "^(");
                 break;
             case R.id.btnGiaiThua:
-                txtExpression.append("!");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "!");
                 break;
             case R.id.btnCanBac:
-                txtExpression.append("√(");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "√(");
                 break;
             case R.id.btnCanBacY:
-                txtExpression.append("Ö");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "√(");
                 break;
             case R.id.btnE:
-                txtExpression.append("e");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "e");
                 break;
             case R.id.btnLN:
-                txtExpression.append("ln(");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "ln(");
                 break;
             case R.id.btnLog:
-                txtExpression.append("log(");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "log(");
                 break;
             case R.id.btnSin:
-                txtExpression.append("sin(");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "sin(");
                 break;
             case R.id.btnCos:
-                txtExpression.append("cos(");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "cos(");
                 break;
             case R.id.btnTan:
-                txtExpression.append("tan(");
+                txtExpression.getText().insert(txtExpression.getSelectionStart(), "tan(");
                 break;
             case R.id.btnResult:
                 String bieuthuc = txtExpression.getText().toString();
