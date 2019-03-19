@@ -12,7 +12,7 @@ public class InfixToPostfix {
 	}
 
 	public static boolean isOperator(char c) { // kiem tra xem co phai toan tu
-		char operator[] = { '+', '-', '*', '/', ')', '(', '^', 's', 'c', 't', 'l', '!', '√', 'Ö'};
+		char operator[] = { '+', '-', '*', '/', ')', '(', '^', 's', 'c', 't', 'l', 'e', '!', '√', 'Ö'};
 		Arrays.sort(operator);
 		if (Arrays.binarySearch(operator, c) > -1)
 			return true;
@@ -24,9 +24,9 @@ public class InfixToPostfix {
 	public static int priority(char c) { // thiet lap thu tu uu tien
 		if (c == '+' || c == '-')
 			return 1;
-		else if (c == '*' || c == '/' || c == '^')
+		else if (c == '*' || c == '/')
 			return 2;
-		else if (c == 's' || c == 'c' || c == 't')
+		else if (c == 's' || c == 'c' || c == 't'  || c == '^' || c == 'l' || c == 'e')
 			return 3;
 		else
 			return 0;
@@ -35,9 +35,13 @@ public class InfixToPostfix {
 	public static String[] tachChuoi(String bieuthuc) {
 		String[] elementMath = null;
 		String s1 = "";
+		char test = ' '; // bien kiem tra ki tu sau l(log hay ln)
 
 		for (int i = 0; i < bieuthuc.length(); i++) {
 			char c = bieuthuc.charAt(i);
+			if (c == 'l') {
+				test = bieuthuc.charAt(i + 1);
+			}
 			if (c >= '0' && c <= '9') {
 				int start = i;
 				int end = start;
@@ -58,11 +62,18 @@ public class InfixToPostfix {
 				s1 = s1 + " " + number;
 			} else {
 				// TODO Chen xu ly ln , log , sin , cos
-				if (c == 's' || c == 'c' || c == 't' || c == 'l') { // kiem tra sin, cos, tan
+				if (c == 's' || c == 'c' || c == 't' ||(c == 'l' && test == 'o')) { // kiem tra sin, cos, tan, log
 					String tam = null;
 					tam = bieuthuc.substring(i, i + 3); // lay 3 ki tu ke tiep
 					s1 = s1 + " " + tam;
 					i += 2;
+				}
+				else
+					if (c == 'l' && test == 'n') { //kiem tra ln
+					String tam = null;
+					tam = bieuthuc.substring(i, i + 2); // lay  ki 2 tu ke tiep
+					s1 = s1 + " " + tam;
+					i += 1;
 				}
 				else
 					if(c == '!' || c == '√') // kiem tra giai thua, can
