@@ -253,28 +253,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btnPlus:
                 if (txtExpression.length() == 0) {
                     txtExpression.append(("0+"));
-                } else {
+                }
+                if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
+                    txtExpression.append(("0+"));
+                }
+                else {
                     txtExpression.append("+");
                 }
                 break;
             case R.id.btnMinus:
                 if (txtExpression.length() == 0) {
                     txtExpression.append(("0-"));
-                } else {
+                }
+                if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
+                    txtExpression.append(("0-"));
+                }else {
                     txtExpression.append("-");
                 }
                 break;
             case R.id.btnMulti:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0*"));
-                } else {
-                    txtExpression.append("*");
+                    txtExpression.append(("0x"));
+                }
+                if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
+                    txtExpression.append(("0x"));
+                }else {
+                    txtExpression.append("x");
                 }
                 break;
             case R.id.btnDivide:
                 if (txtExpression.length() == 0) {
                     txtExpression.append(("0÷"));
-                } else {
+                }
+                if (txtExpression.getText().charAt(txtExpression.length() - 1) == '(') {
+                    txtExpression.append(("0÷"));
+                }else {
                     txtExpression.append("÷");
                 }
                 break;
@@ -332,6 +345,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnResult:
                 String bieuthuc = txtExpression.getText().toString();
+                bieuthuc = bieuthuc.replace("x","*");
                 String[] E = InfixToPostfix.tachChuoi(bieuthuc);
 
                 Queue<String> postFix = InfixToPostfix.postfix(E);
