@@ -258,16 +258,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnMulti:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0*"));
+                    txtExpression.append(("0x"));
                 } else {
-                    txtExpression.append("*");
+                    txtExpression.append("x");
                 }
                 break;
             case R.id.btnDivide:
                 if (txtExpression.length() == 0) {
-                    txtExpression.append(("0/"));
+                    txtExpression.append(("0÷"));
                 } else {
-                    txtExpression.append("/");
+                    txtExpression.append("÷");
                 }
                 break;
             case R.id.btnClear:
@@ -324,8 +324,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnResult:
                 String bieuthuc= txtExpression.getText().toString();
-                String[] E=InfixToPostfix.tachChuoi(bieuthuc);
+                bieuthuc = bieuthuc.replace("x","*");
+                bieuthuc = bieuthuc.replace("÷","/");
 
+                String[] E=InfixToPostfix.tachChuoi(bieuthuc);
                 Queue<String> postFix = InfixToPostfix.postfix(E);
 
                 String result = Calculator.valueMath(postFix);

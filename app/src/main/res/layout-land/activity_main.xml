@@ -178,6 +178,7 @@
                 android:textColor="#E04556" />
 
             <Button
+                android:textSize="10sp"
                 android:id="@+id/btnMulti"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -192,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/btn_normal_background"
-                android:text="/"
+                android:text="÷"
                 android:textColor="#E04556" />
 
             <Button
