@@ -21,8 +21,8 @@
             android:id="@+id/txtMode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
             android:gravity="right"
             android:text="M"
             android:textColor="#FFFFFF" />
@@ -43,8 +43,8 @@
             android:id="@+id/txtResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
             android:gravity="right"
             android:textColor="#FFFFFF"
             android:textSize="24sp" />
@@ -473,6 +473,7 @@
             android:textColor="#7F7F7F" />
 
     </LinearLayout>
+
     <android.support.constraint.Barrier
         android:id="@+id/barrier"
         android:layout_width="wrap_content"
