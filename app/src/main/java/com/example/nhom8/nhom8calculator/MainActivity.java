@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -346,6 +347,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String bieuthuc = txtExpression.getText().toString();
                 bieuthuc = bieuthuc.replace("x", "*");
                 String[] E = InfixToPostfix.tachChuoi(bieuthuc);
+
 
                 Queue<String> postFix = InfixToPostfix.postfix(E);
                 try {

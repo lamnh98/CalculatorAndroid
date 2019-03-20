@@ -31,7 +31,25 @@ public class InfixToPostfix {
         else
             return 0;
     }
-
+    public static int checkNgoac(String[] E) {
+        int ngoacMo = 0, ngoacDong = 0;
+        for(String c: E){
+            if(c.equals("("))
+                ngoacMo++;
+            else if( c.equals(")"))
+                ngoacDong++;
+        }
+        if(ngoacMo == ngoacDong)
+            return 0;
+        else if (ngoacMo < ngoacDong)
+                return 1;
+        else
+            return 2; //ngoac mo nhieu hon ngoac dong
+    }
+    public static String removeCharAt(String s, int pos) {
+        s = s.substring(0, pos-1) + s.substring(pos + 1);
+        return s;
+    }
     public static String[] tachChuoi(String bieuthuc) {
         String[] elementMath = null;
         String s1 = "";
@@ -87,6 +105,24 @@ public class InfixToPostfix {
 
             s1 = s1.trim(); // Xóa dấu ' ' nếu có ở đầu và cuối chuỗi
             elementMath = s1.split(" "); // Tách s1 thành mảng các phần tử
+
+        }
+        while (checkNgoac(elementMath) !=0 ) { //mo ngoac va dong ngoac khong bang nhau
+            if (checkNgoac(elementMath) == 2) {//mo ngoac nhieu hon dong ngoac
+                s1 += " )";//them ")" o cuoi
+                s1 = s1.trim();
+                elementMath = s1.split(" ");
+            } else if (checkNgoac(elementMath) == 1) { //mo ngoac it hon dong ngoac
+                for(int i = s1.length()-1 ;i >= 0 ; i--){
+                    char c = s1.charAt(i);
+                    if(s1.charAt(i)== ')'){
+                        s1 = removeCharAt(s1,i);
+                        s1 = s1.trim();
+                        elementMath = s1.split(" ");
+                        break;
+                    }
+                }
+            }
         }
         return elementMath;
     }
