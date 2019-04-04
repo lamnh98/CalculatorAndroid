@@ -8,7 +8,20 @@ import java.util.Stack;
 
 public class Calculator {
 
-    public static String valueMath(Queue<String> elementMath) {
+    public static String executeCalculate(String bieuthuc) throws ArithmeticException, Exception {
+        Queue<String> postFix = null;
+        String[] E = null;
+        String result = null;
+
+        E = InfixToPostfix.tachChuoi(bieuthuc);
+        postFix = InfixToPostfix.postfix(E);
+        result = Calculator.valueMath(postFix);
+        System.out.println(result);
+
+        return result;
+    }
+
+    private static String valueMath(Queue<String> elementMath) {
 
         char c;
         char test = ' ';
@@ -42,7 +55,7 @@ public class Calculator {
                             break;
                         case '÷':
                             if (num1 == 0)
-                                throw new ArithmeticException("Khong the chia cho 0");
+                                throw new ArithmeticException("Không thể chia cho 0");
                             else
                                 num = num2 / num1;
                             break;
@@ -117,7 +130,7 @@ public class Calculator {
             return Double.toString(result);
     }
 
-    public static double GiaiThua(double a) {
+    private static double GiaiThua(double a) {
         if (a > 0) {
             return a * GiaiThua(a - 1);
         } else

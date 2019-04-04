@@ -50,6 +50,7 @@ public class InfixToPostfix {
         s = s.substring(0, pos-1) + s.substring(pos + 1);
         return s;
     }
+
     public static String[] tachChuoi(String bieuthuc) {
         String[] elementMath = null;
         String s1 = "";

@@ -18,13 +18,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/txtMode"
+            android:id="@+id/txtNotify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:gravity="right"
-            android:text="M"
+            android:text=""
             android:textColor="#FFFFFF" />
 
         <EditText

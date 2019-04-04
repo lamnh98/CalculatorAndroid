@@ -16,13 +16,14 @@ import android.widget.Button;
 import android.view.inputmethod.InputMethodManager;
 
 
+import java.util.ArrayList;
 import java.util.Queue;
 import java.lang.String;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView txtResult;
-    private TextView txtMode;
+    private TextView txtNotify;
     private EditText txtExpression;
 
     private Button btn0;
@@ -63,11 +64,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnSin;
     private Button btnCos;
     private Button btnTan;
-
     private Button btnClear;
     private Button btnBackspace;
     private Button btnResult;
-
+    private String tempExpress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,10 +98,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     // Set id for variables
     public void initWidget() {
         txtResult = (TextView) findViewById(R.id.txtResult);
-        txtMode = (TextView) findViewById(R.id.txtMode);
+        txtNotify = (TextView) findViewById(R.id.txtNotify);
         txtExpression = (EditText) findViewById(R.id.txtExpression);
-//        txtExpression.setTextIsSelectable(true);
-
+        tempExpress = "";
 
         btn0 = (Button) findViewById(R.id.btn0);
         btn1 = (Button) findViewById(R.id.btn1);
@@ -193,6 +192,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     // Add symbols when click button
     public void onClick(View view) {
+        String bieuthuc = null;
+        String result = null;
+
         switch (view.getId()) {
             case R.id.btn0:
                 txtExpression.getText().insert(txtExpression.getSelectionStart(), "0");
@@ -228,28 +230,59 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.getText().insert(txtExpression.getSelectionStart(), ".");
                 break;
             case R.id.btnMplus:
-                if (txtResult.length() == 0) {
-                    txtExpression.append("0+");
-                } else {
-                    txtExpression.append(txtResult.getText().toString() + "+");
+                //TODO Chức năng M+
+                bieuthuc = txtExpression.getText().toString();
+                bieuthuc = bieuthuc.replace("x", "*");
+                try {
+                    result = Calculator.executeCalculate(bieuthuc);
+                    if (tempExpress.isEmpty())
+                        tempExpress = result;
+                    else
+                        tempExpress = tempExpress + "+" + result;
+                    txtNotify.setText("M");
+                } catch (ArithmeticException e) {
+                    result = e.getMessage();
+                    txtResult.setText(result);
+                } catch (Exception e) {
+                    result = "Error";
+                    txtResult.setText(result);
                 }
                 break;
             case R.id.btnMminus:
-                if (txtResult.length() == 0) {
-                    txtExpression.append("0-");
-                } else {
-                    txtExpression.append(txtResult.getText().toString() + "-");
+                //TODO Chức năng M-
+                bieuthuc = txtExpression.getText().toString();
+                bieuthuc = bieuthuc.replace("x", "*");
+                try {
+                    result = Calculator.executeCalculate(bieuthuc);
+                    if (tempExpress.isEmpty())
+                        tempExpress = result;
+                    else
+                        tempExpress = tempExpress + "-" + result;
+                    txtNotify.setText("M");
+                } catch (ArithmeticException e) {
+                    result = e.getMessage();
+                    txtResult.setText(result);
+                } catch (Exception e) {
+                    result = "Error";
+                    txtResult.setText(result);
                 }
                 break;
             case R.id.btnMC:
-                if (txtResult.length() == 0) {
-                    stringMC = "0";
-                } else {
-                    stringMC = txtResult.getText().toString();
-                }
+                // TODO Chức năng MC ( Xóa chuỗi biểu thức tạm thời)
+                tempExpress = "";
+                txtNotify.setText("");
                 break;
             case R.id.btnMR:
-                txtExpression.append(stringMC);
+                //TODO Chức năng MR ( Tính kết quả chuỗi biểu thức tạm thời)
+                try {
+                    result = Calculator.executeCalculate(tempExpress);
+                } catch (ArithmeticException e) {
+                    result = e.getMessage();
+                } catch (Exception e) {
+                    result = "Error";
+                }
+                txtResult.setText(result);
+
                 break;
             case R.id.btnPlus:
 
@@ -293,6 +326,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnClear:
                 txtExpression.setText("");
+                txtResult.setText("");
                 break;
             case R.id.btnBackspace:
                 BaseInputConnection textFieldInputConnection = new BaseInputConnection(txtExpression, true);
@@ -344,30 +378,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 txtExpression.getText().insert(txtExpression.getSelectionStart(), "tan(");
                 break;
             case R.id.btnResult:
-                String bieuthuc = txtExpression.getText().toString();
+                bieuthuc = txtExpression.getText().toString();
                 bieuthuc = bieuthuc.replace("x", "*");
-                String[] E = InfixToPostfix.tachChuoi(bieuthuc);
-
-
-                Queue<String> postFix = InfixToPostfix.postfix(E);
                 try {
-                    String result = Calculator.valueMath(postFix);
-                    System.out.println(result);
-                    txtResult.setText(result);
-                } catch (ArithmeticException error) {
-                    txtResult.setText(error.getMessage());
-                } catch (Exception error) {
-                    txtResult.setText("Error");
+                    result = Calculator.executeCalculate(bieuthuc);
+                } catch (ArithmeticException e) {
+                    result = e.getMessage();
+                } catch (Exception e) {
+                    result = "Error";
                 }
-
+                txtResult.setText(result);
 
                 break;
         }
     }
 
     public String deleteANumber(String number) {
-        int lenght = number.length();
-        String temporaryNumber = number.substring(0, lenght - 1);
-        return temporaryNumber;
+        int length = number.length();
+        return number.substring(0, length - 1);
     }
 }
