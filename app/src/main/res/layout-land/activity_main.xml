@@ -183,8 +183,8 @@
                 android:layout_weight="1"
                 android:background="@drawable/btn_normal_background"
                 android:text="x"
-                android:textSize="10sp"
-                android:textColor="#E04556" />
+                android:textColor="#E04556"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/btnDivide"

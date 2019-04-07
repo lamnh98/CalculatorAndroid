@@ -1,5 +1,20 @@
-package com.example.nhom8.nhom8calculator;
+/*
+ * Copyright 2019 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
+package com.example.nhom8.nhom8calculator;
 
 import com.example.nhom8.nhom8calculator.InfixToPostfix;
 
@@ -22,7 +37,8 @@ public class Calculator {
     }
 
     private static String valueMath(Queue<String> elementMath) {
-
+        BasicOperator basicOperator = new BasicOperator();
+        HighOperator highOperator = new HighOperator();
         char c;
         char test = ' ';
         Stack<String> stack = new Stack<String>();
@@ -45,27 +61,23 @@ public class Calculator {
                     double num2 = Double.parseDouble(stack.pop());
                     switch (c) {
                         case '+':
-                            num = num2 + num1;
+                            num = basicOperator.add(num2, num1);
                             break;
                         case '-':
-                            num = num2 - num1;
+                            num = basicOperator.sub(num2, num1);
                             break;
                         case '*':
-                            num = num2 * num1;
+                            num = basicOperator.mult(num2, num1);
                             break;
                         case '÷':
-                            if (num1 == 0)
-                                throw new ArithmeticException("Không thể chia cho 0");
-                            else
-                                num = num2 / num1;
+                            num = basicOperator.div(num2, num1);
                             break;
                         case '^':
-                            num = Math.pow(num2, num1);
+                            num = highOperator.pow(num1, num2);
                             break;
                         case 'Ö':
-                            num = Math.pow(num2, (double) 1 / num1);
+                            num = highOperator.pow(num2, (double) 1 / num1);
                             break;
-
                         default:
                             break;
                     }
@@ -76,11 +88,11 @@ public class Calculator {
                     double number = Double.parseDouble(stack.pop());
                     if (number >= 0) {
                         if (c == '!') {
-                            num = GiaiThua(number);
+                            num = highOperator.giaithua(number);
                         } else if (test == 'o') {
-                            num = Math.log10(number);
+                            num = highOperator.log(number);
                         } else {
-                            num = Math.log(number);
+                            num = highOperator.ln(number);
                         }
                         stack.push(Double.toString(num));
 
@@ -96,22 +108,19 @@ public class Calculator {
 
                     switch (c) {
                         case 's':
-                            num = Math.sin(rad);
+                            num = highOperator.sin(rad);
                             break;
                         case 'c':
-                            num = Math.cos(rad);
+                            num = highOperator.cos(rad);
                             break;
                         case 't':
-                            num = Math.tan(rad);
+                            num = highOperator.tan(rad);
                             break;
                         case '√':
-                            num = Math.sqrt(num1);
+                            num = highOperator.sqrt(num1);
                             break;
                         case '%':
                             num = num1 / 100;
-                            break;
-                        case 'l':
-                            num = Math.log(num1);
                             break;
                         default:
                             break;
@@ -128,12 +137,5 @@ public class Calculator {
             return Long.toString(temple);
         else
             return Double.toString(result);
-    }
-
-    private static double GiaiThua(double a) {
-        if (a > 0) {
-            return a * GiaiThua(a - 1);
-        } else
-            return 1;
     }
 }
